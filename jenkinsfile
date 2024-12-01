@@ -1,0 +1,76 @@
+def gs
+
+pipeline{
+    agent any
+
+    environment {
+        VERSION = "1.0.1"
+    }
+
+    stages{
+        stage("load script"){
+            steps{
+                script{
+                    gs = load "script.groovy"
+                }
+            }
+        }
+        stage("build images"){
+            steps{
+                script{
+                    ImageName_DockerFileLocation = [
+                        ['frontend','services/frontend'],
+                        ['adservice','services/adservice'],
+                        ['checkoutservice','services/checkoutservice'],
+                        ['currencyservice','services/currencyservice'],
+                        ['emailservice','services/emailservice'],
+                        ['paymentservice','services/paymentservice'],
+                        ['productcatalogservice','services/productcatalogservice'],
+                        ['recommendationservice','services/recommendationservice'],
+                        ['shippingservice','services/shippingservice'],
+                        ['cartservice','services/cartservice/src'],
+                    ] 
+                    gs.build(
+                        '192.168.1.16:8082',                // Nexus repo url
+                        env.VERSION,                        // Version
+                        'nexus-jenkins',                    // Credentail Id for docker repo from jenkins 
+                        ImageName_DockerFileLocation        // List of pairs (Image Name along with Docker File Location)
+                    )
+                }
+            }
+        }
+        stage("push images"){
+            steps{
+                script{
+                    ImageNames=['frontend','adservice','checkoutservice','currencyservice','emailservice','paymentservice','productcatalogservice','recommendationservice','shippingservice','cartservice']
+                    gs.push(
+                        '192.168.1.16:8082',                // Nexus url
+                        env.VERSION,                        // Version
+                        'nexus-jenkins',                    // Credentail Id for docker repo from jenkins 
+                        ImageNames                          // List of Image Names
+                    )
+                }
+            }
+        }
+        stage("update version"){
+            steps {
+                sh """
+                    cd ./k8s-manifests
+                    ./change-version.sh -v $VERSION
+                """
+            }
+        } 
+        stage("push changes"){
+            steps {
+                script {
+                    gs.git_push(
+                        'github.com/hamdiz0/market-app.git',        //url without "https://"
+                        'github-api-token',                         //credentialsId
+                        "updated to version ${VERSION}",            //commit message
+                        'main'                                      //branch
+                    )
+                }
+            }
+        }
+    }
+}

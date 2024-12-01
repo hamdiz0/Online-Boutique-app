@@ -1,0 +1,45 @@
+---
+# adservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adservice-deploy
+  labels:
+    app: adservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adservice
+  template:
+    metadata:
+      labels:
+        app: adservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: adservice
+          image: 192.168.1.16:8082/adservice:1.0.2
+          ports:
+          - containerPort: 9555
+          env:
+          - name: PORT
+            value: "9555"
+---
+# adservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: adservice
+  labels:
+    app: adservice
+spec:
+  selector:
+      app: adservice
+  type: ClusterIP
+  ports:
+    - port : 9555
+      targetPort: 9555

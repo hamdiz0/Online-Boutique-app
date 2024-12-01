@@ -1,0 +1,46 @@
+# recommendationservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice-deploy
+  labels:
+    app: recommendationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommendationservice
+  template:
+    metadata:
+      labels:
+        app: recommendationservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: recommendationservice
+          image: 192.168.1.16:8082/recommendationservice:1.0.2
+          ports:
+          - containerPort: 8080
+          env:
+          - name: PORT
+            value: "8080"
+          - name: PRODUCT_CATALOG_SERVICE_ADDR
+            value: "productcatalogservice:3550"
+---
+# recommendationservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommendationservice
+  labels:
+    app: recommendationservice
+spec:
+  selector:
+      app: recommendationservice
+  type: ClusterIP
+  ports:
+    - port : 8080
+      targetPort: 8080

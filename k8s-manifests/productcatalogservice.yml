@@ -1,0 +1,44 @@
+# productcatalogservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice-deploy
+  labels:
+    app: productcatalogservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: productcatalogservice
+          image: 192.168.1.16:8082/productcatalogservice:1.0.2
+          ports:
+          - containerPort: 3550
+          env:
+          - name: PORT
+            value: "3550"
+---
+# productcatalogservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: productcatalogservice
+  labels:
+    app: productcatalogservice
+spec:
+  selector:
+      app: productcatalogservice
+  type: ClusterIP
+  ports:
+    - port : 3550
+      targetPort: 3550

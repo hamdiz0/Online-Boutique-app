@@ -1,0 +1,56 @@
+# checkoutservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkoutservice-deploy
+  labels:
+    app: checkoutservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkoutservice
+  template:
+    metadata:
+      labels:
+        app: checkoutservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: checkoutservice
+          image: 192.168.1.16:8082/checkoutservice:1.0.2
+          ports:
+          - containerPort: 5050
+          env:
+          - name: PORT
+            value: "5050"
+          - name: PRODUCT_CATALOG_SERVICE_ADDR
+            value: "productcatalogservice:3550"
+          - name: SHIPPING_SERVICE_ADDR
+            value: "shippingservice:50051"
+          - name: EMAIL_SERVICE_ADDR
+            value: "emailservice:8080"
+          - name: PAYMENT_SERVICE_ADDR
+            value: "paymentservice:50051"
+          - name: CURRENCY_SERVICE_ADDR
+            value: "currencyservice:7000"
+          - name: CART_SERVICE_ADDR
+            value: "cartservice:7070"
+---
+# checkoutservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkoutservice
+  labels:
+    app: checkoutservice
+spec:
+  selector:
+      app: checkoutservice
+  type: ClusterIP
+  ports:
+    - port : 5050
+      targetPort: 5050

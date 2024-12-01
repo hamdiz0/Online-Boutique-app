@@ -1,0 +1,46 @@
+# currencyservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice-deploy
+  labels:
+    app: currencyservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      labels:
+        app: currencyservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: currencyservice
+          image: 192.168.1.16:8082/currencyservice:1.0.2
+          ports:
+          - containerPort: 7000
+          env:
+          - name: PORT
+            value: "7000"
+          - name: DISABLE_PROFILER 
+            value: "1"
+---
+# currencyservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: currencyservice
+  labels:
+    app: currencyservice
+spec:
+  selector:
+      app: currencyservice
+  type: ClusterIP
+  ports:
+    - port : 7000
+      targetPort: 7000

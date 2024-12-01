@@ -1,0 +1,46 @@
+# cartservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartservice-deploy
+  labels:
+    app: cartservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cartservice
+  template:
+    metadata:
+      labels:
+        app: cartservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: cartservice
+          image: 192.168.1.16:8082/cartservice:1.0.2
+          ports:
+          - containerPort: 7070
+          env:
+          - name: PORT
+            value: "7070"
+          - name: REDIS_ADDR
+            value: "redis:6379"
+---
+# cartservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cartservice
+  labels:
+    app: cartservice
+spec:
+  selector:
+      app: cartservice
+  type: ClusterIP
+  ports:
+    - port : 7070
+      targetPort: 7070

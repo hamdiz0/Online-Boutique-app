@@ -1,0 +1,45 @@
+---
+# emailservice deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailservice-deploy
+  labels:
+    app: emailservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
+        app: emailservice
+    spec:
+      imagePullSecrets:
+      - name: nexus-registry-secret
+      containers:
+        - name: emailservice
+          image: 192.168.1.16:8082/emailservice:1.0.2
+          ports:
+          - containerPort: 8080
+          env:
+          - name: PORT
+            value: "8080"
+---
+# emailservice service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailservice
+  labels:
+    app: emailservice
+spec:
+  selector:
+      app: emailservice
+  type: ClusterIP
+  ports:
+    - port : 8080
+      targetPort: 8080
