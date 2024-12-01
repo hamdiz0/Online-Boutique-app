@@ -20,7 +20,7 @@ spec:
       - name: nexus-registry-secret
       containers:
         - name: productcatalogservice
-          image: 192.168.1.16:8082/productcatalogservice:1.0.3
+          image: 192.168.1.16:8082/productcatalogservice:1.0.4
           ports:
           - containerPort: 3550
           env:
