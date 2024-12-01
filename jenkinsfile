@@ -31,10 +31,10 @@ pipeline{
                         ['cartservice','services/cartservice/src'],
                     ] 
                     gs.build(
-                        '192.168.1.16:8082',                // Nexus repo url
-                        env.VERSION,                        // Version
-                        'nexus-jenkins',                    // Credentail Id for docker repo from jenkins 
-                        ImageName_DockerFileLocation        // List of pairs (Image Name along with Docker File Location)
+                        '192.168.1.16:8082',                    // Nexus repo url
+                        env.VERSION,                            // Version
+                        'nexus-jenkins',                        // Credentail Id for docker repo from jenkins 
+                        ImageName_DockerFileLocation            // List of pairs (Image Name along with Docker File Location)
                     )
                 }
             }
@@ -44,10 +44,10 @@ pipeline{
                 script{
                     ImageNames=['frontend','adservice','checkoutservice','currencyservice','emailservice','paymentservice','productcatalogservice','recommendationservice','shippingservice','cartservice']
                     gs.push(
-                        '192.168.1.16:8082',                // Nexus url
-                        env.VERSION,                        // Version
-                        'nexus-jenkins',                    // Credentail Id for docker repo from jenkins 
-                        ImageNames                          // List of Image Names
+                        '192.168.1.16:8082',                    // Nexus url
+                        env.VERSION,                            // Version
+                        'nexus-jenkins',                        // Credentail Id for docker repo from jenkins 
+                        ImageNames                              // List of Image Names
                     )
                 }
             }
