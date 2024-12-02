@@ -1,4 +1,4 @@
-// build & push function for multiple dockerfiles
+// build function for multiple dockerfiles
 // build(Nexus docker-hosted repo url , Version , CredentialId from jenkins , list of ImageName and the corresponding DockerFile path)
 def build(String url ,String version ,String credId , List<List> imageName_dockerfilelocation_pair){
     withCredentials([
@@ -17,7 +17,7 @@ def build(String url ,String version ,String credId , List<List> imageName_docke
     } 
 }
 
-// push & push function for multiple dockerfiles
+// push function for multiple dockerfiles
 // push(Nexus docker-hosted repo url , Version , CredentialId from jenkins , list of ImageNames)
 def push(String url ,String version ,String credId , List<List> imageNames){
     withCredentials([
@@ -37,7 +37,7 @@ def push(String url ,String version ,String credId , List<List> imageNames){
 }
 
 // commit and push changes to a git repo 
-// git_push( Git repo url without "https://" , CredentialId from jenkins , String commitMsg, String toBranch)
+// git_push( Git repo url without "https://" , CredentialId from jenkins , commit message , targeted branch)
 def git_push(String url , String credId , String commitMsg, String branch){
     echo "pushing to $branch ..."
     withCredentials([
