@@ -2,7 +2,7 @@
 
 <a href="https://github.com/GoogleCloudPlatform/microservices-demo.git">Based on microservices-demo</a> 
 
-- [Prerequisites](#prerequisites)
+- [Prerequisites](#prerequisites-)
 - [Architecture](#architecture-)
 - [Infrastructure and Tools](#infrastructure-and-tools-)
     - [Setting up Jenkins](#setting-up-jenkins-)
