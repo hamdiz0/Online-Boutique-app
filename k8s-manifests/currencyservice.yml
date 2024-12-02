@@ -20,7 +20,7 @@ spec:
       - name: nexus-registry-secret
       containers:
         - name: currencyservice
-          image: 192.168.1.16:8082/currencyservice:1.0.5
+          image: 192.168.1.16:8082/currencyservice:1.0.6
           ports:
           - containerPort: 7000
           env:

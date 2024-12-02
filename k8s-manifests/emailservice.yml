@@ -21,7 +21,7 @@ spec:
       - name: nexus-registry-secret
       containers:
         - name: emailservice
-          image: 192.168.1.16:8082/emailservice:1.0.5
+          image: 192.168.1.16:8082/emailservice:1.0.6
           ports:
           - containerPort: 8080
           env:
