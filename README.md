@@ -7,9 +7,15 @@
 - [Infrastructure and Tools](#infrastructure-and-tools-)
     - [Setting up Jenkins](#setting-up-jenkins-)
     - [Setting up Nexuss](#setting-up-nexus-)
+- [YAML files](#yaml-files-)
 - [CI/CD Pipeline](#cicd-pipeline-)
   - [CI Pipeline](#ci-pipeline-)
-  - [CD Pipeline](#cd-pipeline-)
+    - [Building & Pushing docker images](#building--pushing-docker-images-)
+    - [Updating the Version](#updating-the-version-)
+    - [Pushing the version change](#pushing-the-version-change-)
+  - [CD Pipeline](#cd-pipeline-gitops-with-argocd-)
+    - [Setting up Argocd](#setting-up-argocd-on-the-k8s-cluster-)
+    - [Configuring Argocd](#configuring-argocd-)
 - [Results](#results-)
 
 A containerized online boutique app with 11 microservices built ,pushed and deployed with a CI/CD pipline using Docker ,Jenkins ,Nexus , Argocd and an on premesis Kubernetes cluster setup with kubeadm using vagrant 
