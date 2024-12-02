@@ -20,7 +20,7 @@ spec:
       - name: nexus-registry-secret
       containers:
         - name: cartservice
-          image: 192.168.1.16:8082/cartservice:1.0.6
+          image: 192.168.1.16:8082/cartservice:1.0.7
           ports:
           - containerPort: 7070
           env:
