@@ -1,6 +1,6 @@
 # market-app
 
-<a href="https://github.com/GoogleCloudPlatform/microservices-demo.git">Based on microservices-demo</a> 
+Based on <a href="https://github.com/GoogleCloudPlatform/microservices-demo.git">microservices-demo</a> 
 
 - [Prerequisites](#prerequisites-)
 - [Architecture](#architecture-)
