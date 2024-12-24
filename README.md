@@ -251,7 +251,7 @@ A containerized online boutique app with 11 microservices built ,pushed and depl
     - git repository url
     - branch 
     - YAML manifests location in the git rpository
-    - destination cluster (https://kubernetes.default.svc for the current local cluster)
+    - destination cluster (`https://kubernetes.default.svc` for the current local cluster)
     - namespace 
 
 <img src="./img/argo1.PNG" style="width:100%">
