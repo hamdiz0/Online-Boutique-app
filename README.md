@@ -157,7 +157,7 @@ A containerized online boutique app with 11 microservices built ,pushed and depl
 * Utilized webhook triggers to launch the pipline automaticly
 * I recommnad using Ngrok if youre planning on using webhooks on a local setup 
     - visit Ngrok <a href="https://ngrok.com/">here</a>
-    - more details about webhook triggers <a href="https://github.com/hamdiz0/LearningDevOps/blob/main/jenkins/jenkins.md#job-triggers">here</a>
+    - more details about webhook triggers <a href="https://github.com/hamdiz0/LearningDevOps/blob/main/jenkins/README.md#job-triggers">here</a>
 * I also recommend using a multibranch pipline for its usefull plugins like the `Ignore Commiter Strategy` and `Multibranch Scan Webhook Trigger`
 
 <img src="./img/ci.PNG" style="width:100%">
