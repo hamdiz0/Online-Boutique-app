@@ -58,7 +58,7 @@ A containerized online boutique app with 11 microservices built ,pushed and depl
 
 ### Setting up Jenkins :
 
-* follow this guide to set up jenkins with as a container <a href="https://github.com/hamdiz0/LearningDevOps/blob/main/jenkins/jenkins.md#doker-in-jenkins">Docker in Jenkins</a>
+* follow this guide to set up jenkins with as a container <a href="https://github.com/hamdiz0/LearningDevOps/blob/main/jenkins/README.md#doker-in-jenkins">Docker in Jenkins</a>
 
 ### Setting up Nexus :
 
