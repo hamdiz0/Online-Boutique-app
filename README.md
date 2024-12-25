@@ -1,4 +1,4 @@
-# market-app
+# Online-Boutique-app
 
 Based on <a href="https://github.com/GoogleCloudPlatform/microservices-demo.git">microservices-demo</a> 
 
