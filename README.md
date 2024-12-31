@@ -50,7 +50,7 @@ A containerized online boutique app with 11 microservices built ,pushed and depl
 <img src="./img/inf.PNG" style="width:100%">
 
 * A Kubernetes cluster setup with kubeadm using vagrant
-    - here is guide to how to setup a k8s cluster with vagrant and kubeadm <a href="https://github.com/vancanhuit/vagrant-k8s">vagrant-k8s</a>
+    - here is guide on how to setup a k8s cluster with vagrant and kubeadm <a href="https://github.com/vancanhuit/vagrant-k8s">vagrant-k8s</a>
 * A Jenkins container, setup on a VM (4Cpu,6Ram) runnig on port 8080
 * Nexus repository on the same VM running on port 8081
 * Argocd installed on the k8s cluster and exposed on port 32000
