@@ -208,7 +208,7 @@ A containerized online boutique app with 11 microservices built ,pushed and depl
 
 ### Pushing the version change :
 
-* set up jenkins to updated the git repository with new YAML files version
+* set up jenkins to update the git repository with new YAML files version
 * set up a git user.name and user.eamil for jenkins :
     ```
     docker exec -it jenkins bash
